@@ -1,5 +1,6 @@
 import random
 from cell import Cell
+import numpy as np
 
 class Plain:
 
@@ -53,7 +54,23 @@ class Plain:
 
     
     def create_kruskal_maze(self):
-        walls = list()
+        #komórki indeksowane od 0; index*2 == prawa pionowa ściana; index*2 + 1 == dolna pozioma ściana
+        #pionowe ściany - parzysty y
+        #poziome ścainy - 
+        walls = np.zeros((2*self.height, 2*self.width), dtype=object)
+        for i in range(2*self.height):
+            for j in range(2*self.width):
+                walls[i][j] = (i,j)
+        walls = walls.flatten()
+        np.random.shuffle(walls)
+        cells = [[set([el]) for j, el in enumerate(row)] for i, row in enumerate(self.grid)]
+        
+        for wall in walls:
+            if 0: #pozioma ściana:
+                pass
+            else: #pionowa ściana:
+                pass
+
 
 
     def solve(self, current_pos):
@@ -87,6 +104,7 @@ class Plain:
 
 if __name__ == "__main__":
     plain = Plain(3,3)
-    plain.draw()
-    plain.create_dfs_maze(plain.grid[0][0])
-    plain.show_walls()
+    # plain.draw()
+    # plain.create_dfs_maze(plain.grid[0][0])
+    # plain.show_walls()
+    plain.create_kruskal_maze()
