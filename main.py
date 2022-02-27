@@ -45,7 +45,7 @@ if __name__ == "__main__":
         for el in solution_path:
             canvas.create_rectangle(el[1]*h_multip+10, el[0]*v_multip+10, (el[1]+1)*h_multip-10, (el[0]+1)*v_multip-10, fill="orange", tags=lines_tag)
 
-
+    inner_loop(None)
     root.bind("<Key>", inner_loop)
     root.bind('s', solve_maze)
     
